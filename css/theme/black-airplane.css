@@ -31,8 +31,8 @@ body:before {
 
 .ba-logo {
   position: fixed;
-  bottom: 15px;
-  left: -215px;
+  bottom: 35px;
+  left: 35px;
   width: 75px;
   height: 75px;
   z-index: 99999;
