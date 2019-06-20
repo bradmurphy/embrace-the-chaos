@@ -26,13 +26,13 @@ body:before {
   opacity: 0.04;
   background-image: url('../../images/ba-white.png');
   background-repeat: no-repeat;
-  background-position: center center;
+  background-position: 107% -50px;
 }
 
 .ba-logo {
-  position: absolute;
-  bottom: 25px;
-  left: 25px;
+  position: fixed;
+  bottom: 15px;
+  left: -215px;
   width: 75px;
   height: 75px;
   z-index: 99999;
