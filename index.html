@@ -4,11 +4,14 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>JavaScript: Embrace the Chaos</title>
+
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,700&display=swap" rel="stylesheet">
+		<link rel="shortcut icon" type="image/x-icon" href="images/favicon.ico">
 
 		<link rel="stylesheet" href="css/reset.css">
 		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/black.css">
+		<link rel="stylesheet" href="css/theme/black-airplane.css">
 
 		<!-- Theme used for syntax highlighting of code -->
 		<link rel="stylesheet" href="lib/css/monokai.css">
@@ -19,23 +22,1084 @@
 			link.rel = 'stylesheet';
 			link.type = 'text/css';
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
+			document.getElementsByTagName('head')[0].appendChild(link);
 		</script>
 	</head>
 	<body>
+	<img src="./images/ba-logo.png" alt="Black Airplane" class="ba-logo">
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+				<section>
+					<h1>JavaScript</h1>
+					<p>Embrace the Chaos</p>
+					<div>
+						<small>Created by: <a href="http://www.github.com/bradmurphy" target="_blank">Brad Murphy</a></small>
+					</div>
+				</section>
+				<section>
+					<h2>Agenda</h2>
+					<ol>
+						<li>Brief History of JavaScript</li>
+						<li>Loops & Iterators (ES5)</li>
+						<li>Object Oriented Programming</li>
+						<li>Functional Programming</li>
+						<li>Asynchronous JavaScript</li>
+						<li>Tips & Tricks / ES6</li>
+					</ol>
+				</section>
+				<section>
+					<section>
+						<h2>A Brief History of JavaScript</h2>
+						<img data-src="./images/protip.jpg" alt="Programming Pro Tip">
+					</section>
+					<section>
+						<ul>
+							<li>Very young language.</li>
+							<li class="fragment fade-up">Created in May of 1995 by Brendan Eich at Netscape.</li>
+							<li class="fragment fade-up">Written in 10 days.</li>
+							<li class="fragment fade-up">Most widely used programming language.</li>
+							<li class="fragment fade-up">One of the most hated languages by many developers.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Why the hate?</h2>
+					</section>
+					<section>
+						<ul>
+							<li class="fragment fade-up">Lack of classes.</li>
+							<li class="fragment fade-up">Lack of block scoping.</li>
+							<li class="fragment fade-up">Automatic semicolon insertion.</li>
+							<li class="fragment fade-up">Lack of promises.</li>
+							<li class="fragment fade-up">Lack of constants.</li>
+							<li class="fragment fade-up">Automatic type coercion (===)</li>
+							<li class="fragment fade-up">Single threaded language.</li>
+							<li class="fragment fade-up">It was written in 10 days with the expectation of handling both the server and client side on the Web.</li>
+						</ul>
+					</section>
+					<section>
+						<h2>Why use it?</h2>
+					</section>
+					<section>
+						<ul>
+							<p>JavaScript has become the de-facto standard programming language of the Web.</p>
+							<p class="fragment fade-up">It’s open source, standardized and most importantly a very good language.  JavaScript is perfect for the Web with its dynamic nature and tight integration with the DOM.</p>
+							<p class="fragment fade-up">Not only does it have server-side capability, it absolutely dominates the client-side of the Web.</p>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Loops & Iterators (ES5)</h2>
+						<img data-src="./images/refactor.jpg" alt="Refactor">
+					</section>
+					<section>
+						<h2>For Loop</h2>
+						<pre>
+							<code data-trim data-noescape>
+								const metalBands = [
+								 { name: 'Pantera', founded: 1981 },
+								 { name: 'Metallica', founded: 1981 },
+								 { name: 'The Dillinger Escape Plan', founded: 1997 },
+								 { name: 'Mastodon', founded: 1999 },
+								 { name: 'Between the Buried and Me', founded: 2000 }
+								];
+
+								// Mutating the current array.
+								for (let index = 0; index < metalBands.length - 1; index++) {
+								 console.log(metalBands[index], index, metalBands);
+								 // { name: ‘Pantera’, founded: 1981 }, 0, [{...}]
+								}
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>For Each (ES5)</h2>
+						<pre>
+							<code data-trim data-noescape>
+								const metalBands = [
+								 { name: 'Pantera', founded: 1981 },
+								 { name: 'Metallica', founded: 1981 },
+								 { name: 'The Dillinger Escape Plan', founded: 1997 },
+								 { name: 'Mastodon', founded: 1999 },
+								 { name: 'Between the Buried and Me', founded: 2000 }
+								];
+
+								// Mutating the current array.
+								metalBands.forEach((band, index, array) => {
+								 console.log(band, index, array);
+								 // { name: ‘Pantera’, founded: 1981 }, 0, [{...}]
+								});
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Map (ES5)</h2>
+						<pre>
+							<code data-trim data-noescape>
+								const metalBands = [
+								 { name: 'Pantera', founded: 1981 },
+								 { name: 'Metallica', founded: 1981 },
+								 { name: 'The Dillinger Escape Plan', founded: 1997 },
+								 { name: 'Mastodon', founded: 1999 },
+								 { name: 'Between the Buried and Me', founded: 2000 }
+								];
+
+								metalBands.map((band, index, array) => {
+								 console.log(band, index, array);
+								 // { name: ‘Pantera’, founded: 1981 }, 0, [{...}]
+								});
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Filter (ES5)</h2>
+						<pre>
+							<code data-trim data-noescape>
+								const metalBands = [
+								 { name: 'Pantera', founded: 1981 },
+								 { name: 'Metallica', founded: 1981 },
+								 { name: 'The Dillinger Escape Plan', founded: 1997 },
+								 { name: 'Mastodon', founded: 1999 },
+								 { name: 'Between the Buried and Me', founded: 2000 },
+								];
+
+								const metallica = metalBands.filter(band => band.name === 'Metallica');
+								// { name: ‘Metallica’, founded: 1981 }
+
+								const notMetallica = metalBands.filter(band => band.name !== 'Metallica');
+								// { name: 'Pantera', founded: 1981 },
+								// { name: 'The Dillinger Escape Plan', founded: 1997 },
+								// { name: 'Mastodon', founded: 1999 },
+								// { name: 'Between the Buried and Me', founded: 2000 },
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Reduce (ES5)</h2>
+						<pre>
+							<code data-trim data-noescape>
+								const transactions = [29.76, 41.85, 46.5];
+
+								const average = transactions.reduce((total, amount, index, array) => {
+								 total + amount;
+								 return total/array.length;
+								}); // 39.37
+
+								--------------------------------------------
+
+								const sum = transactions.reduce((total, amount) => total + amount); // 118.11
+
+								const average = sum/transactions.length; // 39.37
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Object Oriented Programming</h2>
+						<img data-src="./images/oop.png" alt="Object Oriented Programming">
+					</section>
+					<section>
+						<p>Unlike most other languages, JavaScript’s object system is based on prototypes, not classes.</p>
+						<p class="fragment fade-up">This can be frustrating or confusing for most developers coming from other languages, so it's important to understand both prototypes and classes.</p>
+					</section>
+					<section>
+						<h2>Classical Inheritance</h2>
+						<img data-src="./images/classical.jpeg" alt="Classical Inheritance">
+					</section>
+					<section>
+						<h2>What is it?</h2>
+						<p class="fragment fade-up">A class is like a blueprint — a description of the object to be created. Classes inherit from classes and create subclass relationships: hierarchical class taxonomies.</p>
+						<p class="fragment fade-up">Inheritance is fundamentally a code reuse mechanism: A way for different kinds of objects to share code.  The way code is shared matters, if you get it wrong - bad things happen.</p>
+					</section>
+					<section>
+						<h2>Why is this bad?</h2>
+						<ul>
+							<li class="fragment fade-up">The Tight Coupling Problem:  Coding this way makes classes highly dependent on eachother.  When working in large scale projects, Classes often assume too much responsiblity.</li>
+							<li class="fragment fade-up">Creates parent/child object taxonomies as a side-effect.</li>
+							<li class="fragment fade-up">Inflexible Hierarchy:  Eventually, all evolving hierarchies are wrong for new uses and you're forced to create a new Class.</li>
+							<li class="fragment fade-up">Duplicate Code:  Because of an inflexible hierarchy - code is often duplicated across different Classes.</li>
+						</ul>
+					</section>
+					<section>
+						<a href="https://codepen.io/bradmurphy/pen/gNpopW?editors=0010" target="_blank">Classical Inheritance Example</a>
+					</section>
+					<section>
+						<h2>Prototypical Inheritance</h2>
+						<img data-src="./images/prototypical.jpg" alt="Prototypical Inheritance">
+					</section>
+					<section>
+						<h2>What is it?</h2>
+						<p class="fragment fade-up">A prototype is a working object instance. Objects inherit directly from other objects.</p>
+					</section>
+					<section>
+						<h2>Advantages</h2>
+						<ul>
+							<li class="fragment fade-up">Instances can be composed from several different source objects, which allows for simple inheritance and a flat hierarchy.</li>
+							<li class="fragment fade-up">Class taxonomies are not an automatic side-effect.</li>
+						</ul>
+					</section>
+					<section>
+						<a href="https://codepen.io/bradmurphy/pen/zVGppx?editors=0010" target="_blank">Prototypical Inheritance Example</a>
+					</section>
+					<section>
+						<h2>ES6 !== Class Inheritance</h2>
+					</section>
+					<section>
+						<h2>Prototypical Inheritance (ES5)</h2>
+						<pre>
+							<code data-trim data-noescape>
+								const MusicEquipment = function() {
+								  this.volume = 10;
+
+								  this.guitarAmp('Orange', 3);
+								  this.bassAmp('DarkGlass', 6);
+								  this.mixingBoard(8);
+								};
+
+								MusicEquipment.prototype.guitarAmp = function(cabinet, distortion) {
+								  const GuitarAmp = {
+								    volume: this.volume,
+								    cabinet: cabinet,
+								    distortion: distortion
+								  }
+
+								  write('Guitar Amp', GuitarAmp);
+								};
+
+								MusicEquipment.prototype.bassAmp = function(cabinet, compressor) {
+								  const BassAmp = {
+								    volume: this.volume,
+								    cabinet: cabinet,
+								    compressor: compressor
+								  }
+
+								  write('Bass Amp', BassAmp);
+								};
+
+								MusicEquipment.prototype.mixingBoard = function(inputLevel) {
+								  const MixingBoard = {
+								    volume: this.volume,
+								    inputLevel: inputLevel
+								  }
+
+								  write('Mixing Board', MixingBoard);
+								};
+
+								const plugInBaby = new MusicEquipment();
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Prototypical Inheritance (ES6)</h2>
+						<pre>
+							<code data-trim data-noescape>
+								class MusicEquipment() {
+								  constructor() {
+								    this.volume = 10;
+
+								    this.guitarAmp('Orange', 3);
+								    this.bassAmp('DarkGlass', 6);
+								    this.mixingBoard(8);
+								  }
+
+								  guitarAmp(cabinet, distortion) {
+								    const GuitarAmp = {
+								      volume: this.volume,
+								      cabinet: cabinet,
+								      distortion: distortion
+								    }
+
+								    write('Guitar Amp', GuitarAmp);
+								  };
+
+								  bassAmp(cabinet, compressor) {
+								    const BassAmp = {
+								      volume: this.volume,
+								      cabinet: cabinet,
+								      compressor: compressor
+								    }
+
+								    write('Bass Amp', BassAmp);
+								  };
+
+								  mixingBoard(inputLevel) {
+								    const MixingBoard = {
+								      volume: this.volume,
+								      inputLevel: inputLevel
+								    }
+
+								    write('Mixing Board', MixingBoard);
+								  };
+								};
+
+								const plugInBaby = new MusicEquipment();
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Final Thoughts</h2>
+						<ul>
+							<li class="fragment fade-up">There is a time and a place for both Classical and Prototypical inheritance.</li>
+							<li class="fragment fade-up">We see this today in frameworks like React and Vue.  Component classes are extended and we still use the Prototype/Class chain in most components.</li>
+							<li class="fragment fade-up">OOP is a flawed design but it can still add value, like the way we leverage Class Inheritance in Laravel projects.</li>
+							<li class="fragment fade-up">OOP is best used in small implementations in order to gain the best reusability and modularity.</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Functional Programming</h2>
+						<img data-src="./images/functional.png" style="max-width: 300px;" alt="Functional Programming">
+					</section>
+					<section>
+						<h2>What is it?</h2>
+						<p class="fragment fade-up">Functional programming is a paradigm where you believe that functions are the most important part of your program.  Data is immutable in functional programming, that is to say that it should never change.</p>
+						<p class="fragment fade-up">Functional programming operates in a stateless manner, meaning that functions should perform every task as if it was called for the first time, with no knowledge of the future or the past.</p>
+					</section>
+					<section>
+						<p>In functional code, the output value of a function depends only on the arguments that are input to the function, so calling a function (f) twice with the same value for an argument (x) will produce the same result f(x) each time.</p>
+					</section>
+					<section>
+						<h2>Core Concepts</h2>
+						<p>First Class Functions</p>
+					</section>
+					<section>
+						<p> "An entity which supports all the operations generally available to other entities”</p>
+						<ul>
+							<li class="fragment fade-up">Being passed as an argument.</li>
+							<li class="fragment fade-up">Being returned from a function.</li>
+							<li class="fragment fade-up">Being assigned to a variable.</li>
+							<li class="fragment fade-up">In other words:  An object that also happens to be a function.</li>
+						</ul>
+					</section>
+					<section>
+						<p>Function declaration.  Okay but can't be nested within non-function blocks.  The whole thing gets hoisted at compile time. (beware)</p>
+						<pre>
+							<code data-trim data-noescape>
+								function double(x) {
+									return x * x;
+								}
+							</code>
+						</pre>
+						<div class="fragment fade-up">
+							<p>Function expression, first class! 'var double = undefined' gets hoisted but the definition itself does not. (so chill)</p>
+							<pre>
+								<code data-trim data-noescape>
+									const double = function(x) {
+										return x * x;
+									}
+								</code>
+							</pre>
+						</div>
+					</section>
+					<section>
+						<p>Function can be passed as an argument, first class!</p>
+						<pre>
+							<code data-trim data-noescape>
+								const nums = [1, 1, 2, 3, 5, 8];
+
+								const sum = nums.map(double); // [1, 1, 4, 9, 25, 64]
+							</code>
+						</pre>
+						<div class="fragment fade-up">
+							<p>Function can be stored in an array, first class!</p>
+							<pre>
+								<code data-trim data-noescape>
+									const myArray = [5, 'socks', {a: 3}, double, false, Nan, []];
+								</code>
+							</pre>
+						</div>
+					</section>
+					<section>
+						<h2>Core Concepts</h2>
+						<p>High Order Functions</p>
+					</section>
+					<section>
+						<ul>
+							<li>Functions that can receive other functions as arguments OR return functions OR both.</li>
+							<li class="fragment fade-up">Functions that operate on other functions.</li>
+							<li class="fragment fade-up">Can be used to generalize many algorithms that regular functions cannot easily describe.</li>
+						</ul>
+					</section>
+					<section>
+						<p>"Being able to write <em>what</em> we want to
+							do instead of <em>how</em> we want to do it means we are working at
+							a higher level of abstraction.  In practice this means shorter,
+							clearer and more pleasant code." - Marijn Haverbeke, <em>Eloquent
+								JavaScript</em>
+						</p>
+						<div class="fragment fade-up">
+							<h5>Popular High Order Functions</h5>
+							<p>(<em>map, forEach, filter, reduce</em>)</p>
+						</div>
+					</section>
+					<section>
+						<h2>Core Concepts</h2>
+						<p>Pure Functions</p>
+					</section>
+					<section>
+						<h2>What are Pure Functions?</h2>
+						<p class="fragment fade-up">A function that, given the same input, will always return the same output and does not have any observable side-effects.</p>
+					</section>
+					<section>
+						<h2>What's a side effect?</h2>
+						<ul>
+							<li class="fragment fade-up">Changing the file system.</li>
+							<li class="fragment fade-up">Mutating outside variables.</li>
+							<li class="fragment fade-up">Getting user input.</li>
+							<li class="fragment fade-up">Accessing system state.</li>
+							<li class="fragment fade-up">Adding a new variable to a data structure.</li>
+						</ul>
+					</section>
+					<section>
+						<pre>
+							<code data-trim data-noescape>
+let array = [1, 2, 3, 4, 5];
+							</code>
+						</pre>
+						<pre class="fragment fade-up">
+							<code data-trim data-noescape>
+// pure
+array.slice(0, 2);
+console.log(`[${array}]`); // [1,2,3,4,5]
+
+array.slice(0, 2);
+console.log(`[${array}]`); // [1,2,3,4,5]
+
+array.slice(0, 2);
+console.log(`[${array}]`); // [1,2,3,4,5]
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim data-noescape>
+// impure
+array.splice(0, 2);
+console.log(`[${array}]`); // [3,4,5]
+
+array.splice(0, 2);
+console.log(`[${array}]`); // [5]
+
+array.splice(0, 2);
+console.log(`[${array}]`); // []
+
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Core Concepts</h2>
+						<p>Closure</p>
+					</section>
+					<section>
+						<h2>What is it?</h2>
+						<p class="fragment fade-up">Making a property, function or object only accessible to a specific returning function.</p>
+						<p class="fragment fade-up">This of course plays nicely with pure functions as we only mutate internal variables in a functional approach.</p>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>
+let add = function(a) {
+  return function(b) {
+    return a + b;
+  }
+};
+							</code>
+						</pre>
+
+						<pre>
+							<code class="fragment fade-up" data-trim contenteditable>
+// the variable 'a' is enclosed and
+// is only accessible to the returning function.
+
+const add10 = add(10);
+const result = add10(20);
+
+console.log(add10) // func..
+console.log(result); // 20
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Core Concepts</h2>
+						<p>Immutable State</p>
+						<img data-src="./images/muteablestate.png" alt="Mutable State">
+					</section>
+					<section>
+						<p>
+							Lastly, it’s important to mention immutable state.  That is to say - the state cannot change.  In multi-threaded applications, this is great.  It allows the thread to act on data without worrying what other threads are up to.
+						</p>
+					</section>
+					<section>
+						<h2>Functional Programming</h2>
+						<pre>
+							<code data-trim contenteditable>
+const distortion = { distortion: 1 };
+const compressor = { compressor: 1 };
+const volume = { volume: 1 };
+const cabinet = { cabinet: 'Orange' };
+const inputLevel = { inputLevel: 1 };
+
+const GuitarAmp = (options) => {
+  return Object.assign({}, distortion, volume, cabinet, options);
+};
+
+const BassAmp = (options) => {
+  return Object.assign({}, compressor, volume, cabinet, options);
+};
+
+const MixingBoard = (options) => {
+  return Object.assign({}, inputLevel, volume, options);
+};
+
+const guitarAmp = GuitarAmp({distortion: 3, volume: 10, cabinet: 'Orange'});
+const bassAmp = BassAmp({compressor: 6, volume: 10, cabinet: 'DarkGlass'});
+const mixingBoard = MixingBoard({inputLevel: 8, volume: 10});
+							</code>
+						</pre>
+					</section>
+					<section>
+						<p>The key takeaway from digesting the basic building blocks of functional programming is this:  <strong>Composition over Inheritance.</strong></p>
+						<p class="fragment fade-up">
+							Functional code tends to be more concise, more predictable, and easier to test than imperative or object oriented code — but if you’re unfamiliar with it and the common patterns associated with it, functional code can also seem a lot more dense.
+						</p>
+					</section>
+				</section>
+				<section>
+					<section>
+						<img data-src="./images/showcode.jpg" alt="Let's see some code">
+					</section>
+					<section>
+						<h3>Canvas.js - original version</h3>
+						<pre>
+								<code data-trim contenteditable>
+	'use strict';
+
+	var createjs = require('createjs');
+
+	var canvas;
+	var stage;
+	var exportRoot;
+
+	// set canvas id
+	var Canvas = function() {
+	  canvas = document.getElementById('you-line');
+	};
+
+	// initialize canvas animation
+	Canvas.prototype.init = function() {
+	  exportRoot = new lib02.Youtube_Beacon05_Lily_970x250();
+	  stage = new createjs.Stage(canvas);
+	  stage.addChild(exportRoot);
+	  stage.update();
+	  stage.enableDOMEvents(false);
+	};
+
+	// start canvas animation
+	Canvas.prototype.start = function() {
+	  canvas.style.opacity = 1;
+	  createjs.Ticker.setFPS(lib02.properties.fps);
+	  createjs.Ticker.addEventListener('tick', stage);
+	};
+
+	module.exports = Canvas; // 29 lines
+								</code>
+							</pre>
+
+					</section>
+
+					<section>
+
+						<h3>Canvas.js - refactored</h3>
+						<pre>
+								<code data-trim contenteditable>
+	'use strict';
+
+	import createjs from 'createjs';
+
+	export default function() {
+	  const youLine = document.getElementById('you-line');
+	  const exportRoot = new lib02.Youtube_Beacon05_Lily_970x250();
+	  const stage = new createjs.Stage(youLine);
+	  const canvas = Object.create({});
+
+	  canvas.init = () => {
+	    stage.addChild(exportRoot);
+	    stage.update();
+	    stage.enableDOMEvents(false);
+	  };
+
+	  canvas.start = () => {
+	    youLine.style.opacity = 1;
+	    createjs.Ticker.setFPS(lib02.properties.fps);
+	    createjs.Ticker.addEventListener('tick', stage);
+	  };
+
+	  return canvas;
+	}; // 23 lines - 20% reduction
+
+								</code>
+							</pre>
+
+					</section>
+
+					<section>
+
+						<h3>Loader.js - original version</h3>
+						<pre>
+								<code data-trim contenteditable>
+	'use strict';
+
+	function Loader( manifest ) {
+	  this.manifest = manifest;
+	  this.loadItems = 0;
+	  this.loadItemsTotal = 0;
+	  this.loadComplete = false;
+	  this.consoleObject = {
+	    loaded: 0
+	  };
+
+	  manifest.forEach(function(item) {
+	    this._loadImage(item.src);
+	  }.bind(this));
+
+	  this._loadScript('js/vendor.js');
+	}
+
+	Loader.prototype._loadImage = function( path ) {
+	  this.consoleObject[path] = false;
+	  var img = new Image();
+	  img.addEventListener( 'load', this._onLoad.bind( this, path ) );
+	  img.src = path;
+	  this.loadItemsTotal++;
+	};
+
+	Loader.prototype._loadScript = function( path ) {
+	  this.consoleObject[path] = false;
+	  global.Enabler.loadScript( global.Enabler.getUrl( path ), this._onLoad.bind( this, path ) );
+	  this.loadItemsTotal++;
+	};
+
+	Loader.prototype._onLoad = function ( id ) {
+	  this.loadItems++;
+	  this.consoleObject[id] = true;
+	  this.consoleObject.loaded = Math.round( ( this.loadItems / this.loadItemsTotal ) * 100 ) + '%';
+	  if ( this.loadItemsTotal === this.loadItems ) {
+	    this._onLoadComplete();
+	  }
+	};
+
+	Loader.prototype._onLoadComplete = function () {
+	  if (this.loadComplete === true) {
+	    return;
+	  }
+
+	  this.loadComplete = true;
+	  this._loadScript('js/main.build.js');
+	};
+
+	module.exports = Loader; // 50 lines of code
+								</code>
+							</pre>
+
+					</section>
+
+					<section>
+
+						<h3>Loader.js - refactored</h3>
+						<pre>
+								<code data-trim contenteditable>
+	'use strict';
+
+	export default function(manifest) {
+
+	  // Loads all the images in the manifest
+	  const loadImage = function(path) {
+	    return new Promise((resolve, reject) => {
+	      let img = new Image();
+	      img.addEventListener('load', resolve);
+	      img.addEventListener('error', reject);
+	      img.src = path.src;
+	    });
+	  };
+
+	  // loads vendor and main.build scripts, individually
+	  const loadScript = function(path) {
+	    return new Promise((resolve, reject) => {
+	      global.Enabler.loadScript(global.Enabler.getUrl(path), resolve);
+	    });
+	  };
+
+	  const loadImagePromise = manifest.map(loadImage);
+	  const loadVendor =  loadScript('js/vendor.js');
+	  const loadMain = () => loadScript('js/main.build.js');
+
+	  // After all the images have loaded, then load in vendor, lastly load mainbuild.js
+	  Promise.all(loadImagePromise.concat(loadVendor)).then(loadMain);
+	}; // 24 lines of code - 52% reduction.
+
+
+								</code>
+							</pre>
+
+					</section>
+
+					<section>
+
+						<h3>Load.js - original</h3>
+						<pre>
+								<code data-trim contenteditable>
+
+	'use strict';
+
+	var config = require('../config');
+	var Loader = require('./Loader');
+
+	// set up youtube iframe api, add function to global scope
+	var Bootstrap = function () {
+
+	  this.tag = document.createElement('script');
+	  this.tag.src = 'https://www.youtube.com/iframe_api';
+	  this.firstScriptTag = document.getElementsByTagName('script')[0];
+	  this.firstScriptTag.parentNode.insertBefore(this.tag, this.firstScriptTag);
+
+	  window.onYouTubeIframeAPIReady = function() {
+	    this.onYouTubeLoaded();
+	  }.bind(this);
+
+	};
+
+	// once youtube is loaded, initialize enabler
+	Bootstrap.prototype.onYouTubeLoaded = function () {
+
+	  if (Enabler.isInitialized()) {
+	    this.onInitialize();
+	  } else {
+	    Enabler.addEventListener(studio.events.StudioEvent.INIT, this.onInitialize.bind(this));
+	  }
+
+	};
+
+	// once the page is initialized, check that the page is loaded and fire pageLoadedHandler
+	Bootstrap.prototype.onInitialize = function () {
+
+	  if (Enabler.isPageLoaded()) {
+	    this.pageLoadedHandler();
+	  } else {
+	    Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, this.pageLoadedHandler.bind(this));
+	  }
+
+	};
+
+	// make ad visible
+	Bootstrap.prototype.pageLoadedHandler = function () {
+
+	  if (Enabler.isVisible()) {
+	    this.adVisibleHandler();
+	  } else {
+	    Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, this.adVisibleHandler.bind(this));
+	  }
+
+	};
+
+	// create ad
+	Bootstrap.prototype.adVisibleHandler = function () {
+
+	  var loader = new Loader(config.manifest);
+
+	};
+
+	module.exports = Load; //59 lines of code
+								</code>
+							</pre>
+
+					</section>
+
+					<section>
+
+						<h3>Load.js - refactored</h3>
+						<pre>
+								<code data-trim contenteditable>
+	'use strict';
+
+	import { config } from './config';
+	import Loader from './core/Loader';
+
+	// Load the YouTube API, insert the script tag and assign the window object.
+	const loadYTApi = () => {
+
+	  const tag = document.createElement('script');
+	  tag.src = 'https://www.youtube.com/iframe_api';
+	  const firstScriptTag = document.getElementsByTagName('script')[0];
+	  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+	  return new Promise( (resolve, reject) => {
+	    window.onYouTubeIframeAPIReady = resolve;
+	  });
+
+	};
+
+	// Returns a promise that resolves if the method is true, otherwise assigns an event listener.
+	const enablerCheck = (method, state) => {
+
+	  return new Promise( (resolve, reject) => {
+	    return method() ? resolve() : Enabler.addEventListener(state, resolve);
+	  });
+
+	};
+
+	// Load the manifest once the Ad is visible.
+	const adVisibleHandler = () => {
+	  const loader = Loader(config.manifest);
+	};
+
+	// Enabler promises for initialize, load and visible states.
+	const initPromise = enablerCheck(Enabler.isInitialized.bind(Enabler), studio.events.StudioEvent.INIT);
+	const loadPromise = enablerCheck(Enabler.isPageLoaded.bind(Enabler), studio.events.StudioEvent.PAGE_LOADED);
+	const visiblePromise = enablerCheck(Enabler.isVisible.bind(Enabler), studio.events.StudioEvent.VISIBLE);
+
+	// If everything is a-ok, show the Ad.
+	Promise.all([loadYTApi(), initPromise, loadPromise, visiblePromise]).then(adVisibleHandler);
+	//39 lines of code - 34% reduction of code
+
+								</code>
+							</pre>
+
+					</section>
+
+					<section>
+
+						<h3>Animation.js - original version</h3>
+						<pre>
+								<code data-trim contenteditable>
+	'use strict';
+
+	var TweenMax = require('TweenMax');
+
+	var AnimationController = function () {
+
+	  // selectors
+	  this.player = document.querySelector('#player');
+	  this.animationWrap = document.querySelector('#animation');
+	  this.loader = document.querySelector('#loading');
+	  this.whiteBox = document.querySelector('#white-box');
+	  this.lillyText = document.querySelector('#lilly-text');
+	  this.fansText = document.querySelector('#fans-text');
+	  this.slash = document.querySelector('#slash');
+	  this.underlay = document.querySelector('#underlay');
+	  this.lozenge = document.querySelector('#lozenge');
+
+	  // booleans
+	  this.endOnce = true;
+
+	  this.init();
+
+	};
+
+	// initialize controller, build all timelines.
+	AnimationController.prototype.init = function() {
+	  this.globalTimeline = new TimelineMax({paused: true});
+	  this.globalTimeline.add(this.tl1(), 0.0);
+	  this.globalTimeline.add(this.tl2(), 21.25);
+	  return this.globalTimeline;
+	};
+
+	// timeline 0 - loading  wipe animation
+	AnimationController.prototype.tl1 = function () {
+	  this.tl1 = new TimelineMax();
+	  this.tl1.to([this.underlay, this.loader], 0.4, {autoAlpha: 0, ease: Power1.easeOut});
+	  return this.tl1;
+	};
+
+	// timeline 4 - last zoom in of branding
+	AnimationController.prototype.tl2 = function () {
+	  this.tl2 = new TimelineMax();
+	  this.tl2.fromTo(this.animationWrap, 3.225, {x: '-200%',
+	    autoAlpha: 1,
+	    scaleX: 10,
+	    scaleY: 10},
+	    {x: '0%',
+	    scaleX: 1,
+	    scaleY: 1,
+	    ease: Power3.easeOut});
+
+	  return this.tl2;
+	};
+
+	// make player visible, set animation wrap and fire tl0
+	AnimationController.prototype.start = function () {
+	  this.player.style.opacity = 1;
+	  this.globalTimeline.play();
+	};
+
+	// play animation
+	AnimationController.prototype.play = function () {
+	  this.globalTimeline.play();
+	};
+
+	// seek animation
+	AnimationController.prototype.seek = function(time) {
+	  this.globalTimeline.seek(time);
+	};
+
+	// pause animation
+	AnimationController.prototype.pause = function () {
+	  this.globalTimeline.pause();
+	};
+
+	// kill all animations, end banner
+	AnimationController.prototype.endState = function () {
+	  if (this.endOnce) {
+	    TweenMax.killAll(true, true, true, true);
+	    TweenMax.set(this.animationWrap, {autoAlpha: 1});
+	    this.endOnce = false;
+	  }
+	};
+
+	module.exports = AnimationController; // 84 lines of code
+								</code>
+							</pre>
+
+					</section>
+
+					<section>
+
+						<h3>Animation.js - refactored</h3>
+						<pre>
+								<code data-trim contenteditable>
+	'use strict';
+
+	import TweenMax from 'TweenMax';
+
+	export default function() {
+	    // selectors
+	    const player = document.querySelector('#player');
+	    const animationWrap = document.querySelector('#animation');
+	    const loader = document.querySelector('#loading');
+	    const whiteBox = document.querySelector('#white-box');
+	    const lillyText = document.querySelector('#lilly-text');
+	    const fansText = document.querySelector('#fans-text');
+	    const slash = document.querySelector('#slash');
+	    const underlay = document.querySelector('#underlay');
+	    const lozenge = document.querySelector('#lozenge');
+
+	    // timeline
+	    let timeline = null;
+
+	    // booleans
+	    let endOnce = true;
+
+	    const animation = Object.create({});
+
+	    animation.init = () => {
+	      timeline = new TimelineMax({paused: true});
+	      timeline.add(fadeOutLoader(), 0.0);
+	      timeline.add(animateBranding(), 21.25);
+	      return timeline;
+	    };
+
+	    function fadeOutLoader() {
+	      const tl = new TimelineMax();
+	      tl.to([underlay, loader], 0.4, {autoAlpha: 0, ease: Power1.easeOut});
+	      return tl;
+	    };
+
+	    function animateBranding() {
+	      const tl = new TimelineMax();
+	      tl.fromTo(animationWrap, 3.225, {x: '-200%',
+	        autoAlpha: 1,
+	        scaleX: 10,
+	        scaleY: 10},
+	        {x: '0%',
+	        scaleX: 1,
+	        scaleY: 1,
+	        ease: Power3.easeOut});
+	      return tl;
+	    };
+
+	    animation.start = () => {
+	      player.style.opacity = 1;
+	      timeline.play();
+	    };
+
+	    animation.play = () => timeline.play();
+
+	    animation.seek = (time) => timeline.seek(time);
+
+	    animation.pause = () => timeline.pause();
+
+	    animation.endState = () => {
+	      if (endOnce) {
+	        TweenMax.killAll(true, true, true, true);
+	        TweenMax.set(animationWrap, {autoAlpha: 1});
+	        endOnce = false;
+	      }
+	    };
+
+	    return animation;
+	}; // 70 lines of code - 16% reduction
+
+
+								</code>
+							</pre>
+
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Tips & Tricks / ES6</h2>
+					</section>
+					<section>
+						<h2>Tips & Tricks ES6</h2>
+						<ul>
+							<li>Template Literals</li>
+							<li>Ternary</li>
+							<li>Switch Statements</li>
+							<li>Destructuring</li>
+							<li>Let/Const/Var | Block Scope</li>
+							<li>Arrow Functions/Bind</li>
+							<li>Spread Operator</li>
+							<li>Sets</li>
+						</ul>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Asynchronous JavaScript</h2>
+						<img data-src="./images/callbacks.png" alt="Callback Hell">
+					</section>
+				</section>
+				<section>
+					<h2>Resources</h2>
+					<small>
+						<ul>
+							<li><a href="https://psdtowp.net/learn-javascript.html" target="_blank">Learn JavaScript: The best methods and resources according to 25 JavaScript experts</a></li>
+							<li><a href="https://auth0.com/blog/2016/03/23/intro-to-immutable-js/" target="_blank">Introduction to Immutable.js and Functional Programming Concepts</a></li>
+							<li><a href="https://www.gitbook.com/book/drboolean/mostly-adequate-guide/details" target="_blank">Mostly Adequate Guide to Functional Programming</a></li>
+							<li><a href="http://eloquentjavascript.net/1st_edition/chapter6.html" target="_blank">Eloquent JavaScript - Functional Programming </a></li>
+							<li><a href="https://medium.com/javascript-scene/the-two-pillars-of-javascript-pt-2-functional-programming-a63aa53a41a4#.hsra264om" target="_blank">The Two Pillars of JavaScript — Pt 2: Functional Programming</a></li>
+							<li><a href="https://medium.com/@collardeau/intro-to-functional-programming-concepts-in-javascript-b0650773139c#.plketwxa1" target="_blank">An Intro to Functional Programming Concepts in JavaScript</a></li>
+							<li><a href="https://hughfdjackson.com/javascript/why-curry-helps/" target="_blank">Why Curry Helps</a></li>
+							<li><a href="http://lucasmreis.github.io/blog/pointfree-javascript/" target="_blank">Point-free JavaScript</a></li>
+							<li><a href="http://fr.umio.us/why-ramda/" target="_blank">Why Ramda?</a></li>
+							<li><a href="https://medium.com/@jugoncalves/functional-programming-should-be-your-1-priority-for-2015-47dd4641d6b9#.u2649jxjf" target="_blank">Functional Programming should be your #1 priority for 2015</a></li>
+							<li><a href="https://github.com/timoxley/functional-javascript-workshop" target="_blank">Functional JavaScript Workshop</a></li>
+							<li><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-is-a-pure-function-d1c076bec976#.umux9e8mh" target="_blank">Master the JavaScript Interview: What is a Pure Function?</a></li>
+							<li><a href="http://curtclifton.net/papers/MoseleyMarks06a.pdf" target="_blank">Reliance on state, the largest contributor to system complexity</a></li>
+							<li><a href="http://requiremind.com/memoization-speed-up-your-javascript-performance/" target="_blank">Cacheing Pure Functions and Memoization</a></li>
+							<li><a href="https://blog.pivotal.io/labs/labs/all-evidence-points-to-oop-being-bullshit" target="_blank">All evidence points to OOP being bullshit</a></li>
+							<li><a href="http://codepen.io/Universalist/post/predicates-in-javascript" target="_blank">Predicates in Javascript</a></li>
+							<li><a href="https://medium.com/javascript-scene/master-the-javascript-interview-what-s-the-difference-between-class-prototypal-inheritance-e4cd0a7562e9" target="_blank">Master the JavaScript Interview: What’s the Difference Between Class & Prototypal Inheritance?</a></li>
+						</ul>
+					</small>
+				</section>
 			</div>
 		</div>
 
 		<script src="js/reveal.js"></script>
 
 		<script>
-			// More info about config & dependencies:
-			// - https://github.com/hakimel/reveal.js#configuration
-			// - https://github.com/hakimel/reveal.js#dependencies
 			Reveal.initialize({
 				dependencies: [
 					{ src: 'plugin/markdown/marked.js' },
