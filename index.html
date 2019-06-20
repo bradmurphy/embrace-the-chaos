@@ -7,9 +7,9 @@
 		<title>JavaScript: Embrace The Chaos</title>
 
 		<meta name="theme-color" content="#E63C2F">
-		<meta name=description content="We are a full-service design and development agency based in Woodstock, GA and we are on a mission to make sure no digital experience gets left behind.">
+		<meta name=description content="An in-depth look at programming paradigms and JavaScript best practices.">
 		<meta name=keywords content="design, development, ux, atlanta, user experience, ui, website design, app design, atlanta web design, woodstock web design, atlanta web developer, woodstock web developer">
-		<meta name=twitter:card content=summary_large_image><meta name=twitter:site content=@blackairplane><meta name=twitter:creator content=@blackairplane><meta name=twitter:title content="Black Airplane - Websites And Apps That Win"><meta name=twitter:description content="Full-service design and development agency on a mission to make sure no digital experience gets left behind.">
+		<meta name=twitter:card content=summary_large_image><meta name=twitter:site content=@blackairplane><meta name=twitter:creator content=@blackairplane><meta name=twitter:title content="JavaScript - Embrace The Chaos // Black Airplane // Written by: Brad Murphy"><meta name=twitter:description content="Full-service design and development agency on a mission to make sure no digital experience gets left behind.">
 		<meta name=twitter:image content=https://blackairplane.com/static/twitter-card.png><meta property=og:title content="Black Airplane - Websites And Apps That Win"><meta property=og:type content=website>
 		<meta property=og:url content=https://blackairplane.com/ ><meta property=og:image content=https://blackairplane.com/static/facebook-card.png><meta property=og:description content="Full-service design and development agency on a mission to make sure no digital experience gets left behind."><meta property=og:site_name content="Black Airplane - Websites And Apps That Win">
 		<meta property=fb:admins content=398736080266276>
@@ -1338,6 +1338,32 @@ const todayParty = [ ...todayPartyMembers, ...todayFamilyMembers ];
 					<section>
 						<h2>Asynchronous JavaScript</h2>
 						<img data-src="./images/callbacks.png" alt="Callback Hell">
+					</section>
+					<section>
+						<h2>Callback Hell</h2>
+					</section>
+					<section>
+						<p>Where we came from...</p>
+						<pre>
+							<code data-trim contenteditable>getData(function(a){
+    getMoreData(a, function(b){
+        getMoreData(b, function(c){
+            getMoreData(c, function(d){
+                getMoreData(d, function(e){
+                    ...
+                });
+            });
+        });
+    });
+});
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Promises</h2>
+					</section>
+					<section>
+						<h2>Async/Await</h2>
 					</section>
 				</section>
 				<section>
