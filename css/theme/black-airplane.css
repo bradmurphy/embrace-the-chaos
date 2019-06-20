@@ -39,7 +39,7 @@ body:before {
 }
 
 .reveal {
-  font-family: "Roboto", Helvetica, sans-serif;
+  font-family: "courier-prime", monospace;
   font-size: 38px;
   font-weight: normal;
   color: #fff; }
@@ -70,19 +70,21 @@ body:before {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: #E63C2F;
-  font-family: "Roboto", Helvetica, sans-serif;
-  font-weight: 600;
+  font-family: "franklin-gothic-ext-comp-urw", Helvetica, sans-serif;
+  font-weight: 700;
   line-height: 1.2;
-  letter-spacing: 1px;
+  letter-spacing: 4px;
   text-transform: normal;
   text-shadow: none;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  text-transform: uppercase;
+}
 
 .reveal h1 {
   font-size: 2.5em; }
 
 .reveal h2 {
-  font-size: 1.6em; }
+  font-size: 1.75em; }
 
 .reveal h3 {
   font-size: 1.3em; }

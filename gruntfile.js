@@ -162,12 +162,6 @@ module.exports = grunt => {
 
 	});
 
-// Function declaration. Okay but can't be nested within non-function blocks
-	// The whole thing gets hoisted at compile time. (beware)
-	function double(x) {
-		return x * x;
-	}
-
 	// Default task
 	grunt.registerTask( 'default', [ 'css', 'js' ] );
 
