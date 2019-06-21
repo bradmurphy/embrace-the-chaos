@@ -69,9 +69,9 @@
 					<ol>
 						<li>Brief History of JavaScript</li>
 						<li>Loops & Iterators (ES5)</li>
+						<li>Tips & Tricks / ES6</li>
 						<li>Object Oriented Programming</li>
 						<li>Functional Programming</li>
-						<li>Tips & Tricks / ES6</li>
 						<li>Asynchronous JavaScript</li>
 					</ol>
 				</section>
@@ -216,6 +216,289 @@
 								const sum = transactions.reduce((total, amount) => total + amount); // 118.11
 
 								const average = sum/transactions.length; // 39.37
+							</code>
+						</pre>
+					</section>
+				</section>
+				<section>
+					<section>
+						<h2>Tips & Tricks / ES6</h2>
+						<img data-src="./images/destructure.jpeg" alt="Destructuring">
+					</section>
+					<section>
+						<h2>Ternary</h2>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>const boolean = true;
+let string = '';
+
+if (boolean) {
+  string = 'Nickelback is awful';
+else {
+  string = 'Nickelback is horrible';
+}
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>
+								const string = boolean ? `Nickelback is awful.` : `Nickelback is horrible.`;
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>const boolean = true;
+let string = '';
+
+if (boolean) {
+  string = 'Nickelback is awful';
+else if (boolean === null) {
+  string = 'Nickelback is horrible';
+} else {
+  string = 'Nickelback should have batteries pegged at them.'
+}
+
+const string = boolean ?
+  `Nickelback is awful` : boolean === null ?
+  `Nickelback is horrible` : `Nickelback should have batteries pegged at them.`.
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Switch Statements</h2>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>let condition = '';
+
+if(condition === 'add') {
+  // Add logic here.
+} else if (condition === 'delete') {
+  // Delete logic here.
+} else if (condition === 'save') {
+  // Save logic
+} else {
+  // Do nothing.
+}
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>switch(condition) {
+  case 'add':
+    // Add logic here.
+    break;
+  case 'delete':
+    // Delete logic here.
+    break;
+  case 'save':
+    // Save logic here.
+    break;
+  default:
+    // Do nothing.
+};
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Template Literals</h2>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>
+								var name = 'Brad';
+var string = 'Hi, my name is ' + Brad;
+
+const name = 'Brad';
+const string = `Hi, my name is ${name}`;
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>var string = 'This is a mutliline statement' +
+'This is a multi-line statement' +
+'This is a multi-line statement';
+
+const string = `
+  This is a mutliline statement
+  This is a multi-line statement
+  This is a multi-line statement
+`;
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Destructuring</h2>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>
+								this.dog = {
+								 name: 'Atlas',
+								 weight: 20,
+								 breed: 'Miniature Schnauzer'
+								};
+
+								console.log(this.dog.name, this.dog.weight, this.dog.breed); // Atlas, 20, Miniature Schnauzer
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>
+								this.dog = {
+								 name: 'Atlas',
+								 weight: 20,
+								 breed: 'Miniature Schnauzer'
+								};
+
+								const { name, weight, breed } = this.dog;
+
+								console.log(name, weight, breed); // Atlas, 20, Miniature Schnauzer
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Block Scoping</h2>
+						<p>const, let & var</p>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>function varTest() {
+  var x = 1;
+  if (true) {
+    var x = 2;  // same variable!
+    console.log(x);  // 2
+  }
+  console.log(x);  // 2
+};
+
+function letTest() {
+  let x = 1;
+  if (true) {
+    let x = 2;  // different variable
+    console.log(x);  // 2
+  }
+  console.log(x);  // 1
+};
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>const number = 42;
+
+try {
+  number = 99;
+} catch(err) {
+  console.log(err);
+  // expected output: TypeError: invalid assignment to const `number'
+}
+
+console.log(number);
+// expected output: 42
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Bind & Arrow Functions</h2>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>const BindExample = function() {
+  const button = document.querySelector('button');
+  this.x = 10;
+
+  const readValue = function() {
+    console.log(this.x); // undefined
+  };
+
+  button.addEventListener('click', readValue);
+};
+
+const bind = new BindExample();
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>const BindExample = function() {
+  const button = document.querySelector('button');
+  this.x = 10;
+
+  const readValue = function() {
+    console.log(this.x); // 10
+  };
+
+  button.addEventListener('click', readValue.bind(this);
+};
+
+const bind = new BindExample();
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>const ArrowExample = function() {
+  const button = document.querySelector('button');
+  this.x = 10;
+
+  const readValue = () => {
+    console.log(this.x); // 10
+  };
+
+  button.addEventListener('click', readValue);
+};
+
+const arrow = new ArrowExample();
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Spread Operator</h2>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>function add(x, y, z) {
+  return x + y + z;
+}
+
+const numbers = [1, 2, 3];
+const sum = add(...numbers);
+
+console.log(sum); // 6
+							</code>
+						</pre>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>// Get todays current party members.
+const todayPartyMembers = partyResp.data['family_members'].map((member) => buildPartyMembers(member, partyResp.data.id));
+
+// Get account family members to add to party.
+const todayFamilyMembers = accountResp.data['family_members'].map((member) => buildTodayFamilyMembers(member, todayPartyMembers, dayPass, partyResp.data.id));
+
+// Merge family members and party members.
+const todayParty = [ ...todayPartyMembers, ...todayFamilyMembers ];
+							</code>
+						</pre>
+					</section>
+					<section>
+						<h2>Sets</h2>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>
+								const array = [1, 1, 2, 3, 4, 5];
+								const set = new Set(array);
+
+								const newArray = [ ...set ];
+								console.log(newArray); // [1, 2, 3, 4, 5];
 							</code>
 						</pre>
 					</section>
@@ -1068,289 +1351,6 @@ const mixingBoard = MixingBoard({inputLevel: 8, volume: 10});
 								</code>
 							</pre>
 
-					</section>
-				</section>
-				<section>
-					<section>
-						<h2>Tips & Tricks / ES6</h2>
-						<img data-src="./images/destructure.jpeg" alt="Destructuring">
-					</section>
-					<section>
-						<h2>Ternary</h2>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>const boolean = true;
-let string = '';
-
-if (boolean) {
-  string = 'Nickelback is awful';
-else {
-  string = 'Nickelback is horrible';
-}
-							</code>
-						</pre>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>
-								const string = boolean ? `Nickelback is awful.` : `Nickelback is horrible.`;
-							</code>
-						</pre>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>const boolean = true;
-let string = '';
-
-if (boolean) {
-  string = 'Nickelback is awful';
-else if (boolean === null) {
-  string = 'Nickelback is horrible';
-} else {
-  string = 'Nickelback should have batteries pegged at them.'
-}
-
-const string = boolean ?
-  `Nickelback is awful` : boolean === null ?
-  `Nickelback is horrible` : `Nickelback should have batteries pegged at them.`.
-							</code>
-						</pre>
-					</section>
-					<section>
-						<h2>Switch Statements</h2>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>let condition = '';
-
-if(condition === 'add') {
-  // Add logic here.
-} else if (condition === 'delete') {
-  // Delete logic here.
-} else if (condition === 'save') {
-  // Save logic
-} else {
-  // Do nothing.
-}
-							</code>
-						</pre>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>switch(condition) {
-  case 'add':
-    // Add logic here.
-    break;
-  case 'delete':
-    // Delete logic here.
-    break;
-  case 'save':
-    // Save logic here.
-    break;
-  default:
-    // Do nothing.
-};
-							</code>
-						</pre>
-					</section>
-					<section>
-						<h2>Template Literals</h2>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>
-								var name = 'Brad';
-var string = 'Hi, my name is ' + Brad;
-
-const name = 'Brad';
-const string = `Hi, my name is ${name}`;
-							</code>
-						</pre>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>var string = 'This is a mutliline statement' +
-'This is a multi-line statement' +
-'This is a multi-line statement';
-
-const string = `
-  This is a mutliline statement
-  This is a multi-line statement
-  This is a multi-line statement
-`;
-							</code>
-						</pre>
-					</section>
-					<section>
-						<h2>Destructuring</h2>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>
-								this.dog = {
-								 name: 'Atlas',
-								 weight: 20,
-								 breed: 'Miniature Schnauzer'
-								};
-
-								console.log(this.dog.name, this.dog.weight, this.dog.breed); // Atlas, 20, Miniature Schnauzer
-							</code>
-						</pre>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>
-								this.dog = {
-								 name: 'Atlas',
-								 weight: 20,
-								 breed: 'Miniature Schnauzer'
-								};
-
-								const { name, weight, breed } = this.dog;
-
-								console.log(name, weight, breed); // Atlas, 20, Miniature Schnauzer
-							</code>
-						</pre>
-					</section>
-					<section>
-						<h2>Block Scoping</h2>
-						<p>const, let & var</p>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>function varTest() {
-  var x = 1;
-  if (true) {
-    var x = 2;  // same variable!
-    console.log(x);  // 2
-  }
-  console.log(x);  // 2
-};
-
-function letTest() {
-  let x = 1;
-  if (true) {
-    let x = 2;  // different variable
-    console.log(x);  // 2
-  }
-  console.log(x);  // 1
-};
-							</code>
-						</pre>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>const number = 42;
-
-try {
-  number = 99;
-} catch(err) {
-  console.log(err);
-  // expected output: TypeError: invalid assignment to const `number'
-}
-
-console.log(number);
-// expected output: 42
-							</code>
-						</pre>
-					</section>
-					<section>
-						<h2>Bind & Arrow Functions</h2>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>const BindExample = function() {
-  const button = document.querySelector('button');
-  this.x = 10;
-
-  const readValue = function() {
-    console.log(this.x); // undefined
-  };
-
-  button.addEventListener('click', readValue);
-};
-
-const bind = new BindExample();
-							</code>
-						</pre>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>const BindExample = function() {
-  const button = document.querySelector('button');
-  this.x = 10;
-
-  const readValue = function() {
-    console.log(this.x); // 10
-  };
-
-  button.addEventListener('click', readValue.bind(this);
-};
-
-const bind = new BindExample();
-							</code>
-						</pre>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>const ArrowExample = function() {
-  const button = document.querySelector('button');
-  this.x = 10;
-
-  const readValue = () => {
-    console.log(this.x); // 10
-  };
-
-  button.addEventListener('click', readValue);
-};
-
-const arrow = new ArrowExample();
-							</code>
-						</pre>
-					</section>
-					<section>
-						<h2>Spread Operator</h2>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>function add(x, y, z) {
-  return x + y + z;
-}
-
-const numbers = [1, 2, 3];
-const sum = add(...numbers);
-
-console.log(sum); // 6
-							</code>
-						</pre>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>// Get todays current party members.
-const todayPartyMembers = partyResp.data['family_members'].map((member) => buildPartyMembers(member, partyResp.data.id));
-
-// Get account family members to add to party.
-const todayFamilyMembers = accountResp.data['family_members'].map((member) => buildTodayFamilyMembers(member, todayPartyMembers, dayPass, partyResp.data.id));
-
-// Merge family members and party members.
-const todayParty = [ ...todayPartyMembers, ...todayFamilyMembers ];
-							</code>
-						</pre>
-					</section>
-					<section>
-						<h2>Sets</h2>
-					</section>
-					<section>
-						<pre>
-							<code data-trim contenteditable>
-								const array = [1, 1, 2, 3, 4, 5];
-								const set = new Set(array);
-
-								const newArray = [ ...set ];
-								console.log(newArray); // [1, 2, 3, 4, 5];
-							</code>
-						</pre>
 					</section>
 				</section>
 				<section>
