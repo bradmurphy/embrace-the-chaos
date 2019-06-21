@@ -9,9 +9,11 @@
 		<meta name="theme-color" content="#E63C2F">
 		<meta name=description content="An in-depth look at programming paradigms and JavaScript best practices.">
 		<meta name=keywords content="design, development, ux, atlanta, user experience, ui, website design, app design, atlanta web design, woodstock web design, atlanta web developer, woodstock web developer">
-		<meta name=twitter:card content=summary_large_image><meta name=twitter:site content=@blackairplane><meta name=twitter:creator content=@blackairplane><meta name=twitter:title content="JavaScript - Embrace The Chaos // Black Airplane // Written by: Brad Murphy"><meta name=twitter:description content="Full-service design and development agency on a mission to make sure no digital experience gets left behind.">
+		<meta name=twitter:card content=summary_large_image><meta name=twitter:site content=@blackairplane><meta name=twitter:creator content=@blackairplane><meta name=twitter:title content="JavaScript - Embrace The Chaos // Black Airplane // Written by: Brad Murphy">
+		<meta name=twitter:description content="Full-service design and development agency on a mission to make sure no digital experience gets left behind.">
 		<meta name=twitter:image content=https://blackairplane.com/static/twitter-card.png><meta property=og:title content="Black Airplane - Websites And Apps That Win"><meta property=og:type content=website>
-		<meta property=og:url content=https://blackairplane.com/ ><meta property=og:image content=https://blackairplane.com/static/facebook-card.png><meta property=og:description content="Full-service design and development agency on a mission to make sure no digital experience gets left behind."><meta property=og:site_name content="Black Airplane - Websites And Apps That Win">
+		<meta property=og:url content=https://blackairplane.com/ ><meta property=og:image content=https://blackairplane.com/static/facebook-card.png><meta property=og:description content="An in-depth look at programming paradigms and JavaScript best practices.">
+		<meta property=og:site_name content="Black Airplane - Websites And Apps That Win">
 		<meta property=fb:admins content=398736080266276>
 
 		<link rel="stylesheet" href="https://use.typekit.net/wcu2fkw.css">
@@ -51,8 +53,8 @@
 						<li>Loops & Iterators (ES5)</li>
 						<li>Object Oriented Programming</li>
 						<li>Functional Programming</li>
-						<li>Asynchronous JavaScript</li>
 						<li>Tips & Tricks / ES6</li>
+						<li>Asynchronous JavaScript</li>
 					</ol>
 				</section>
 				<section>
@@ -348,7 +350,7 @@
 					<section>
 						<h2>Final Thoughts</h2>
 						<ul>
-							<li class="fragment fade-up">There is a time and a place for both Classical and Prototypical inheritance.</li>
+							<li>There is a time and a place for both Classical and Prototypical inheritance.</li>
 							<li class="fragment fade-up">We see this today in frameworks like React and Vue.  Component classes are extended and we still use the Prototype/Class chain in most components.</li>
 							<li class="fragment fade-up">OOP is a flawed design but it can still add value, like the way we leverage Class Inheritance in Laravel projects.</li>
 							<li class="fragment fade-up">OOP is best used in small implementations in order to gain the best reusability and modularity.</li>
@@ -565,6 +567,7 @@ const mixingBoard = MixingBoard({inputLevel: 8, volume: 10});
 						</pre>
 					</section>
 					<section>
+						<h2>Final Thoughts</h2>
 						<p>The key takeaway from digesting the basic building blocks of functional programming is this:  <strong>Composition over Inheritance.</strong></p>
 						<p class="fragment fade-up">
 							Functional code tends to be more concise, more predictable, and easier to test than imperative or object oriented code — but if you’re unfamiliar with it and the common patterns associated with it, functional code can also seem a lot more dense.
@@ -1340,10 +1343,13 @@ const todayParty = [ ...todayPartyMembers, ...todayFamilyMembers ];
 						<img data-src="./images/callbacks.png" alt="Callback Hell">
 					</section>
 					<section>
+						<p>JavaScript is a single threaded language.</p>
+						<p class="fragment fade-up">Meaning an operation must resolve before it can continue onto the next task.</p>
+					</section>
+					<section>
 						<h2>Callback Hell</h2>
 					</section>
 					<section>
-						<p>Where we came from...</p>
 						<pre>
 							<code data-trim contenteditable>getData(function(a){
     getMoreData(a, function(b){
@@ -1363,7 +1369,44 @@ const todayParty = [ ...todayPartyMembers, ...todayFamilyMembers ];
 						<h2>Promises</h2>
 					</section>
 					<section>
+						<pre>
+							<code data-trim contenteditable>const promise = new Promise(function(resolve, reject) {
+  // the function is executed automatically when the promise is constructed
+
+  // after 1 second signal resolve;
+  setTimeout(() => resolve('done'), 1000);
+});
+
+promise
+  .then((resp) => console.log(resp)) // done
+  .catch((err) => console.log(err));
+
+							</code>
+						</pre>
+					</section>
+					<section>
+						<a href="https://codepen.io/bradmurphy/pen/XLpyGr?editors=0010" target="_blank">Promise Example</a>
+					</section>
+					<section>
 						<h2>Async/Await</h2>
+					</section>
+					<section>
+						<pre>
+							<code data-trim contenteditable>const asyncAwait = async () => {
+  try {
+    const resp = await promise('http://www.example.com');
+    const data = await resp.json();
+    console.log(data);
+  }
+  catch(err) {
+    console.log(err);
+  }
+};
+							</code>
+						</pre>
+					</section>
+					<section>
+						<a href="https://codepen.io/bradmurphy/pen/ZdLVxQ?editors=0010" target="_blank">Async/Await Example</a>
 					</section>
 				</section>
 				<section>
