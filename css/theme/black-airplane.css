@@ -26,7 +26,7 @@ body:before {
   opacity: 0.04;
   background-image: url('../../images/ba-white.png');
   background-repeat: no-repeat;
-  background-position: 107% -50px;
+  background-position: right center;
 }
 
 .ba-logo {
